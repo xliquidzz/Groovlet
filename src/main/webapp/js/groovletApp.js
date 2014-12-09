@@ -3,12 +3,21 @@ var groovletApp = angular.module('groovletApp', ['ngRoute']);
 groovletApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
-   	 .when('/view1', {
-        templateUrl: 'partials/view1.html',
+    .when('/', {
+        templateUrl: 'partials/start.html',
+        controller: 'GroovletController'
+     })
+
+   	 .when('/groovlists', {
+        templateUrl: 'partials/groovlists.html',
         controller: 'GroovletController'
       })
-     .when('/view2', {
-        templateUrl: 'partials/view2.html',
+     .when('/buddies', {
+        templateUrl: 'partials/buddies.html',
+        controller: 'GroovletController'
+      })
+     .when('/usersettings', {
+        templateUrl: 'partials/usersettings.html',
         controller: 'GroovletController'
       })
      .otherwise({

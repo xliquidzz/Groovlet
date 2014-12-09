@@ -18,7 +18,7 @@ public class App extends Application<GroovletConfiguration> {
 
     @Override
     public void initialize(Bootstrap<GroovletConfiguration> bootstrap) {
-        bootstrap.addBundle(new AssetsBundle("/assets", "/index/", "index.html", "assets"));
+        bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html", "assets"));
     }
 
     @Override
