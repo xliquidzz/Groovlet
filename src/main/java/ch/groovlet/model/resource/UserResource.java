@@ -2,7 +2,9 @@ package ch.groovlet.model.resource;
 
 import ch.groovlet.model.dao.UserDAO;
 import ch.groovlet.model.representations.User;
+import io.dropwizard.auth.Auth;
 import org.skife.jdbi.v2.DBI;
+import org.skife.jdbi.v2.sqlobject.Bind;
 
 import javax.annotation.Nonnull;
 import javax.validation.Valid;
@@ -18,23 +20,19 @@ public class UserResource {
 
     private final UserDAO userDAO;
 
-    public UserResource(@Nonnull final DBI dbi) {
+    public UserResource(final DBI dbi) {
         userDAO = dbi.onDemand(UserDAO.class);
     }
 
     @POST
-    public
-    @Nonnull
-    Response createUser(@Valid @Nonnull final User user) throws URISyntaxException {
-        final long newUserId = userDAO.createUser(user.getFirstname(), user.getLastname(), user.getEmail());
+    public Response createUser(final User user) throws URISyntaxException {
+        final long newUserId = userDAO.createUser(user.getNickname(), user.getEmail());
         return Response.created(new URI(String.valueOf(newUserId))).build();
     }
 
     @GET
     @Path("/{id}")
-    public
-    @Nonnull
-    Response readUser(@PathParam("id") @Nonnull final long id) {
+    public Response readUserById(@PathParam("id") final long id /*, @Auth Boolean isAuthenticated*/) {
         final User user = userDAO.readUserById(id);
         if (user == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -42,11 +40,10 @@ public class UserResource {
         return Response.ok(user).build();
     }
 
+
     @DELETE
     @Path("/{id}")
-    public
-    @Nonnull
-    Response deleteUser(@PathParam("id") @Nonnull final long id) {
+    public Response deleteUser(@PathParam("id") final long id ) {
         if (userDAO.readUserById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

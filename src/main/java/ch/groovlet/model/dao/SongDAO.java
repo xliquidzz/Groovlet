@@ -7,22 +7,21 @@ import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import javax.annotation.Nullable;
 
+@RegisterMapper(SongMapper.class)
 public interface SongDAO {
 
     @GetGeneratedKeys
     @SqlUpdate("INSERT INTO song (id, artistId, title, genre, votes, youtubeString) VALUES (NULL, :artistId, :title, :genre, :votes, :youtubeString)")
-    @Nullable
     long createSong(@Bind("id") long id, @Bind("artistId") long artistId,
                     @Bind("title") String title, @Bind("genre") String genre,
                     @Bind("votes") int votes,
                     @Bind("youtubeString") String youtubeString);
 
-    @Mapper(SongMapper.class)
     @SqlQuery("SELECT * FROM song WHERE id = :id")
-    @Nullable
     Song readSongById(@Bind("id") final long id);
 
     @SqlUpdate("DELETE FROM song WHERE id = :id")

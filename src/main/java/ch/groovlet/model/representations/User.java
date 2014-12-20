@@ -11,53 +11,29 @@ public class User {
 
     private final long id;
 
-    @NotBlank
     @Length(min = 1, max = 100)
-    private final String firstname;
+    private final String nickname;
 
-    @NotBlank
-    @Length(min = 1, max = 100)
-    private final String lastname;
-
-    @NotBlank
     @Email
     @Length(min = 1, max = 100)
     private final String email;
 
-    public User() {
-        this(0, null, null, null);
-    }
-
-    public User(@Nonnull final long id, @Nonnull final String firstname, @Nonnull final String lastname,
-                @Nonnull final String email) {
+    public User(final long id, final String nickname, final String email) {
         super();
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.nickname = nickname;
         this.email = email;
     }
 
-    public
-    @Nullable
-    long getId() {
+    public long getId() {
         return id;
     }
 
-    public
-    @Nullable
-    String getFirstname() {
-        return firstname;
+    public String getNickname() {
+        return nickname;
     }
 
-    public
-    @Nullable
-    String getLastname() {
-        return lastname;
-    }
-
-    public
-    @Nullable
-    String getEmail() {
+    public String getEmail() {
         return email;
     }
 }

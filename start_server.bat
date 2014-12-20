@@ -1,0 +1,1 @@
+java -jar build/libs/Groovlet-0.1.jar server config.yaml

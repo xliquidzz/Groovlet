@@ -1,0 +1,17 @@
+@media screen and (max-width: 768px){
+
+    html, body {
+         height: 100%;
+         width: 100%;
+         margin: 0px;
+         padding: 0px;
+    }
+
+    .only-mobile {
+        display: inline;
+    }
+
+    .user-settings-icons {
+        float: right;
+    }
+}
