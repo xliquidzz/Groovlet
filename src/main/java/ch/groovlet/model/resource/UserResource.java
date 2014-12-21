@@ -2,12 +2,8 @@ package ch.groovlet.model.resource;
 
 import ch.groovlet.model.dao.UserDAO;
 import ch.groovlet.model.representations.User;
-import io.dropwizard.auth.Auth;
 import org.skife.jdbi.v2.DBI;
-import org.skife.jdbi.v2.sqlobject.Bind;
 
-import javax.annotation.Nonnull;
-import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -43,7 +39,7 @@ public class UserResource {
 
     @DELETE
     @Path("/{id}")
-    public Response deleteUser(@PathParam("id") final long id ) {
+    public Response deleteUser(@PathParam("id") final long id) {
         if (userDAO.readUserById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

@@ -83,3 +83,7 @@ INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(nul
 INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 2, "test song", "test genre2", 'f4W7uZBaIaE',0);
 INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 1, "test song", "genre", 'nRvA08ALkGU',0);
 INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 3, "test song", "test ge", 'frJKUPjqWgg',0);
+
+INSERT INTO songlist(id, fk_adminId, name) VALUES(null,1,"xliquidzz SongList");
+INSERT INTO songlist(id, fk_adminId, name) VALUES(null,3,"test_user SongList");
+INSERT INTO songlist(id, fk_adminId, name) VALUES(null,4,"SongList");

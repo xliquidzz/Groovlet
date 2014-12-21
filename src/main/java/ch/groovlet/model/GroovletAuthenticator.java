@@ -15,7 +15,7 @@ public class GroovletAuthenticator implements Authenticator<BasicCredentials, Us
 
     private final UserDAO userDao;
 
-    public GroovletAuthenticator(DBI jdbi){
+    public GroovletAuthenticator(DBI jdbi) {
         userDao = jdbi.onDemand(UserDAO.class);
     }
 

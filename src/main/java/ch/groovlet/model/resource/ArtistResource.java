@@ -1,9 +1,7 @@
 package ch.groovlet.model.resource;
 
 import ch.groovlet.model.dao.ArtistDAO;
-import ch.groovlet.model.dao.SongDAO;
 import ch.groovlet.model.representations.Artist;
-import ch.groovlet.model.representations.Song;
 import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;
@@ -38,11 +36,11 @@ public class ArtistResource {
     @GET
     @Path("/{id}")
     public Response readArtist(@PathParam("id") final long id) {
-        final Song song = artistDAO.readArtistById(id);
-        if (song == null) {
+        final Artist artist = artistDAO.readArtistById(id);
+        if (artist == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.ok(song).build();
+        return Response.ok(artist).build();
     }
 
     @DELETE

@@ -1,14 +1,11 @@
 package ch.groovlet.model.dao;
 
 import ch.groovlet.model.dao.mappers.ArtistMapper;
-import ch.groovlet.model.dao.mappers.SongMapper;
 import ch.groovlet.model.representations.Artist;
-import ch.groovlet.model.representations.Song;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
-import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
@@ -18,13 +15,12 @@ import java.util.List;
  */
 @RegisterMapper(ArtistMapper.class)
 public interface ArtistDAO {
-
     @GetGeneratedKeys
     @SqlUpdate("INSERT INTO artist (id, name) VALUES (NULL, :name)")
     long createArtist(@Bind("id") long id, @Bind("name") String name);
 
     @SqlQuery("SELECT * FROM artist WHERE id = :id")
-    Song readArtistById(@Bind("id") final long id);
+    Artist readArtistById(@Bind("id") final long id);
 
     @SqlUpdate("DELETE FROM artist WHERE id = :id")
     void deleteArtistById(@Bind("id") final long id);
