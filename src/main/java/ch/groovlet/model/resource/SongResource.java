@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Path("/song")
 public class SongResource {
 
@@ -22,6 +23,7 @@ public class SongResource {
 
     @POST
     public Response createSong(final Song song) throws URISyntaxException {
+        System.out.println(song.getTitle());
         final long newSongId = songDAO.createSong(song.getId(),
                 song.getArtistId(), song.getTitle(), song.getGenre(),
                 song.getVotes(), song.getYoutubeString());
