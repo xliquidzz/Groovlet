@@ -1,0 +1,1 @@
+java -Xdebug -Xrunjdwp:transport=dt_socket,address=8585,server=y,suspend=n -jar build/libs/Groovlet-0.1.jar server config.yaml

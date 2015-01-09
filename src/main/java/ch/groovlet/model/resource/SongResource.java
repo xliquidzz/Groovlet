@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Path("/song")
 public class SongResource {
 

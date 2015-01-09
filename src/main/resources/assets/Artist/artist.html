@@ -1,1 +1,13 @@
 <h1>Artist</h1>
+
+<div ng-controller="backupController">
+    <div class="container">
+        <div class="row">
+            <a download="backup.json" ng-href="/api/artist">Download Backup</a>
+        </div>
+        <div class="row">
+            <textarea rows="5" ng-model="inputData"></textarea>
+            <button ng-click="postBackup()">Upload Backup</button>
+        </div>
+    </div>
+</div>

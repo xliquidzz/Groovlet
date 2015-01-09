@@ -1,4 +1,4 @@
-var app = angular.module('groovlet', ['ngRoute', 'songModule', 'youtube']);
+var app = angular.module('groovlet', ['ngRoute', 'ngResource', 'songModule', 'artistModule', 'backupModule', 'youtube']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
