@@ -1,4 +1,4 @@
-package ch.groovlet.model.representations;
+package ch.groovlet.model.representation;
 
 /**
  * Created by sandro on 20.12.2014.

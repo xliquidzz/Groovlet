@@ -68,3 +68,25 @@ span.glyphicon-user{
 .only-mobile {
     display: none;
 }
+
+    #myModal {
+        top: 5%;
+        outline: none;
+        padding-right: 0px;
+    }
+
+    .modal-header {
+        border-radius: 0px;
+    }
+
+    .modal-footer {
+        border-radius: 0px;
+    }
+
+    .modal-body {
+        border-radius: 0px;
+    }
+
+    .modal-content {
+        border-radius: 0px;
+    }

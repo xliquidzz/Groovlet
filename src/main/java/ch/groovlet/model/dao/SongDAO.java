@@ -1,7 +1,7 @@
 package ch.groovlet.model.dao;
 
 import ch.groovlet.model.dao.mappers.SongMapper;
-import ch.groovlet.model.representations.Song;
+import ch.groovlet.model.representation.Song;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;

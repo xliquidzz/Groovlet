@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-4" ng-repeat="song in songs">
             <div class="thumbnail">
-                <img class="song-image" src="images/test1.png" alt="...">
+                <img class="song-image" src="Song/test1.PNG" alt="...">
                 <div class="song-info">
                     <div class="caption">
                         <h4>{{song.title}}</h4>
@@ -11,7 +11,7 @@
                         <p>Votes: {{song.votes}}</p>
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default">
+                                <button type="button" class="btn btn-default" ng-click="addVote(song)">
                                     Vote <span class="glyphicon glyphicon-star-empty"></span>
                                 </button>
                             </div>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" close="close()">
+<div class="modal fade modal inverse" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" close="close()">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

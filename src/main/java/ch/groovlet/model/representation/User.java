@@ -1,4 +1,4 @@
-package ch.groovlet.model.representations;
+package ch.groovlet.model.representation;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;

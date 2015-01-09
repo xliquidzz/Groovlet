@@ -14,4 +14,30 @@
     .user-settings-icons {
         float: right;
     }
+
+    #myModal {
+        border-radius: 0px;
+        top: 5%;
+        outline: none;
+        width: 100%
+    }
+
+    #myModal {
+        border-radius: 0px;
+        top: 5%;
+        outline: none;
+        width: 100%
+        padding-right:0px;
+    }
+
+    .modal {
+        width: 100%;
+    }
+    .modal-content {
+        border-radius: 0px;
+    }
+
+    .only-mobile {
+        display: inline;
+    }
 }

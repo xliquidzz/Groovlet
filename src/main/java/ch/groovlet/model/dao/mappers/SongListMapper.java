@@ -1,6 +1,6 @@
 package ch.groovlet.model.dao.mappers;
 
-import ch.groovlet.model.representations.SongList;
+import ch.groovlet.model.representation.SongList;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 

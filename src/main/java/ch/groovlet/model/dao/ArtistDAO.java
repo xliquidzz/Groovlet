@@ -1,7 +1,7 @@
 package ch.groovlet.model.dao;
 
 import ch.groovlet.model.dao.mappers.ArtistMapper;
-import ch.groovlet.model.representations.Artist;
+import ch.groovlet.model.representation.Artist;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -17,7 +17,7 @@ import java.util.List;
 public interface ArtistDAO {
     @GetGeneratedKeys
     @SqlUpdate("INSERT INTO artist (id, name) VALUES (NULL, :name)")
-    long createArtist(@Bind("id") long id, @Bind("name") String name);
+    long createArtist(@Bind("name") String name);
 
     @SqlQuery("SELECT * FROM artist WHERE id = :id")
     Artist readArtistById(@Bind("id") final long id);
@@ -27,4 +27,7 @@ public interface ArtistDAO {
 
     @SqlQuery("SELECT * FROM artist")
     List<Artist> readAllArtists();
+
+    @SqlUpdate("UPDATE artist SET name=:name WHERE id=:id")
+    void updateArtist(@Bind("id") final long id,@Bind("name") final String name);
 }

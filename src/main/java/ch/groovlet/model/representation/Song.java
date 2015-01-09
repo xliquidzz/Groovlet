@@ -1,4 +1,4 @@
-package ch.groovlet.model.representations;
+package ch.groovlet.model.representation;
 
 public class Song {
 

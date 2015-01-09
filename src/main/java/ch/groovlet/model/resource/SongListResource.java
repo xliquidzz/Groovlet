@@ -1,7 +1,7 @@
 package ch.groovlet.model.resource;
 
 import ch.groovlet.model.dao.SongListDAO;
-import ch.groovlet.model.representations.SongList;
+import ch.groovlet.model.representation.SongList;
 import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;

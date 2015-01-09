@@ -1,7 +1,7 @@
 package ch.groovlet.model;
 
 import ch.groovlet.model.dao.UserDAO;
-import ch.groovlet.model.representations.User;
+import ch.groovlet.model.representation.User;
 import com.google.common.base.Optional;
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.Authenticator;

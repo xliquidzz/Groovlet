@@ -1,7 +1,7 @@
 package ch.groovlet.model.resource;
 
 import ch.groovlet.model.dao.UserDAO;
-import ch.groovlet.model.representations.User;
+import ch.groovlet.model.representation.User;
 import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;

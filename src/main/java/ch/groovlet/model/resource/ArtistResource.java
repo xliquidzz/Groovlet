@@ -1,7 +1,8 @@
 package ch.groovlet.model.resource;
 
-import ch.groovlet.model.dao.ArtistDAO;
-import ch.groovlet.model.representations.Artist;
+import ch.groovlet.model.App;
+import ch.groovlet.model.representation.Artist;
+import ch.groovlet.model.service.ArtistService;
 import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;
@@ -15,28 +16,28 @@ import java.util.List;
 @Path("/artist")
 public class ArtistResource {
 
-    private final ArtistDAO artistDAO;
+    private final ArtistService artistService;
 
     public ArtistResource(final DBI dbi) {
-        artistDAO = dbi.onDemand(ArtistDAO.class);
+        artistService = App.getService(ArtistService.class);
     }
 
     @GET
     public Response getAllArtists() {
-        final List<Artist> allArtists = artistDAO.readAllArtists();
+        final List<Artist> allArtists = artistService.getAllArtists();
         return Response.ok(allArtists).build();
     }
 
     @POST
     public Response createArtist(final Artist artist) throws URISyntaxException {
-        final long newArtistId = artistDAO.createArtist(artist.getId(), artist.getName());
+        final long newArtistId = artistService.createArtist(artist.getName());
         return Response.created(new URI(String.valueOf(newArtistId))).build();
     }
 
     @GET
     @Path("/{id}")
     public Response readArtist(@PathParam("id") final long id) {
-        final Artist artist = artistDAO.readArtistById(id);
+        final Artist artist = artistService.readArtistById(id);
         if (artist == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -46,11 +47,20 @@ public class ArtistResource {
     @DELETE
     @Path("/{id}")
     public Response deleteArtist(@PathParam("id") final long id) {
-        if (artistDAO.readArtistById(id) == null) {
+        if (artistService.readArtistById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        artistDAO.deleteArtistById(id);
+        artistService.deleteArtist(id);
         return Response.noContent().build();
+    }
+
+    @PUT
+    public Response updateArtist( @PathParam("id") final long id, @PathParam("name") final String name) throws URISyntaxException {
+        if (artistService.readArtistById(id) == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        artistService.updateArtist(id, name);
+        return Response.ok(new Artist(id, name)).build();
     }
 }
 
