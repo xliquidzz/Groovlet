@@ -23,4 +23,7 @@ public interface SongDAO {
 
     @SqlUpdate("DELETE FROM song WHERE id = :id")
     void deleteSongById(@Bind("id") final long id);
+
+    @SqlUpdate("DELETE FROM song")
+    void deleteAll();
 }

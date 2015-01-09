@@ -3,10 +3,10 @@ package ch.groovlet.model.representations;
 public class Song {
 
     private long id;
+    private long artistId;
     private String title;
     private String Genre;
     private int votes;
-    private long artistId;
     private String youtubeString;
 
     public Song(long id, long artistId, String title, String Genre, int votes,

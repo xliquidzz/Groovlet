@@ -1,8 +1,8 @@
 package ch.groovlet.model.resource;
 
-import ch.groovlet.model.dao.ArtistDAO;
+import ch.groovlet.model.App;
 import ch.groovlet.model.representations.Artist;
-import org.skife.jdbi.v2.DBI;
+import ch.groovlet.model.service.ArtistService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,31 +12,43 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Path("/artist")
 public class ArtistResource {
 
-    private final ArtistDAO artistDAO;
+    private final ArtistService artistService;
 
-    public ArtistResource(final DBI dbi) {
-        artistDAO = dbi.onDemand(ArtistDAO.class);
+    public ArtistResource() {
+        this.artistService = App.getService(ArtistService.class);
     }
 
     @GET
     public Response getAllArtists() {
-        final List<Artist> allArtists = artistDAO.readAllArtists();
+        final List<Artist> allArtists = artistService.readAll();
         return Response.ok(allArtists).build();
     }
 
     @POST
     public Response createArtist(final Artist artist) throws URISyntaxException {
-        final long newArtistId = artistDAO.createArtist(artist.getId(), artist.getName());
+        final long newArtistId = artistService.create(artist.getId(), artist.getName());
         return Response.created(new URI(String.valueOf(newArtistId))).build();
     }
+
+    @PUT
+    @Path("/{id}")
+    public Response updateArtist(@PathParam("id") final long id, final Artist artist) {
+        if (artistService.readById(id) == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        artistService.updateById(id, artist.getName());
+        return Response.ok(new Artist(id, artist.getName())).build();
+    }
+
 
     @GET
     @Path("/{id}")
     public Response readArtist(@PathParam("id") final long id) {
-        final Artist artist = artistDAO.readArtistById(id);
+        final Artist artist =(Artist) artistService.readById(id);
         if (artist == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -46,10 +58,10 @@ public class ArtistResource {
     @DELETE
     @Path("/{id}")
     public Response deleteArtist(@PathParam("id") final long id) {
-        if (artistDAO.readArtistById(id) == null) {
+        if (artistService.readById(id) == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        artistDAO.deleteArtistById(id);
+        artistService.deleteById(id);
         return Response.noContent().build();
     }
 }

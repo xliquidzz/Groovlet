@@ -23,7 +23,6 @@ public class SongResource {
 
     @POST
     public Response createSong(final Song song) throws URISyntaxException {
-        System.out.println(song.getTitle());
         final long newSongId = songDAO.createSong(song.getId(),
                 song.getArtistId(), song.getTitle(), song.getGenre(),
                 song.getVotes(), song.getYoutubeString());
