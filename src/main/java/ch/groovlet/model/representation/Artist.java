@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 /**
  * Created by sandro on 20.12.2014.
  */
-public class Artist implements Representation{
+public class Artist {
 
     private long id;
 

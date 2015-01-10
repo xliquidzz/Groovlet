@@ -1,5 +1,8 @@
 package ch.groovlet.model.representation;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Song {
 
     private long id;
@@ -9,8 +12,9 @@ public class Song {
     private int votes;
     private String youtubeString;
 
-    public Song(long id, long artistId, String title, String Genre, int votes,
-                String youtubeString) {
+    @JsonCreator
+    public Song(@JsonProperty("id") long id, @JsonProperty("fk_artistId") long artistId, @JsonProperty("title") String title, @JsonProperty("genre") String Genre, @JsonProperty("votes") int votes,
+                @JsonProperty("youtubeString") String youtubeString) {
         this.id = id;
         this.artistId = artistId;
         this.title = title;

@@ -11,7 +11,7 @@ public class SongMapper implements ResultSetMapper<Song> {
 
     public Song map(final int index, final ResultSet r, final StatementContext ctx)
             throws SQLException {
-        return new Song(r.getLong("id"), r.getLong("artistId"),
+        return new Song(r.getLong("id"), r.getLong("fk_artistId"),
                 r.getString("title"), r.getString("genre"), r.getInt("votes"),
                 r.getString("youtubeString"));
     }

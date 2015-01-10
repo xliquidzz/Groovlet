@@ -3,25 +3,27 @@
         <div class="col-sm-6 col-md-4" ng-repeat="song in songs">
             <div class="thumbnail">
                 <img class="song-image" src="Song/test1.PNG" alt="...">
-                <div class="song-info">
+                <div class="song-info black">
                     <div class="caption">
-                        <h4>{{song.title}}</h4>
-                        <p>{{song.artist}}</p>
-                        <p>{{song.genre}}</p>
-                        <p>Votes: {{song.votes}}</p>
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" ng-click="addVote(song)">
+                        <div class="white">
+                            <h4>{{song.title}}</h4>
+                            <p>{{song.artist}}</p>
+                            <p>{{song.genre}}</p>
+                            <p>Votes: {{song.votes}}</p>
+                        </div>
+                        <div class="btn-group btn-group-justified btn-grey" role="group" aria-label="...">
+                            <div class="btn-group btn-grey" role="group">
+                                <button type="button" class="btn btn-default"  ng-click="addVote(song)">
                                     Vote <span class="glyphicon glyphicon-star-empty"></span>
                                 </button>
                             </div>
-                            <div class="btn-group" role="group">
+                            <div class="btn-group btn-grey" role="group">
                                 <button type="button" class="btn btn-default" ng-click="setYoutubeSong(song)" data-toggle="modal" data-target="#myModal">
                                     Listen
                                     <span class="glyphicon glyphicon-headphones"></span>
                                 </button>
                             </div>
-                            <div class="btn-group" role="group">
+                            <div class="btn-group btn-grey" role="group" >
                                 <button type="button" class="btn btn-default">
                                     Details <span class="glyphicon glyphicon-eye-open"></span>
                                 </button>
@@ -45,7 +47,7 @@
                 <h4 class="modal-title" id="myModalLabel">{{youtubeSong.title}}</h4>
             </div>
             <div class="modal-body">
-                <div youtube code="youtubeSong.youtube"></div>
+                <div youtube code="youtubeSong.youtubeString"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>

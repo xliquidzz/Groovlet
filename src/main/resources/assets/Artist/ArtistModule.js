@@ -9,6 +9,6 @@ artistModule.service('artistService', function($resource) {
 
 });
 
-artistModule.controller('artistController', function(artistService) {
+artistModule.controller('artistController', function($scope, artistService) {
     $scope.allArtists = artistService.allArtists();
 });

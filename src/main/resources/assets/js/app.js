@@ -21,7 +21,7 @@ app.config(['$routeProvider',
       })
       .when('/artists', {
              templateUrl: 'Artist/artist.html',
-             controller: 'mainController'
+             controller: 'artistController'
       })
      .when('/user', {
              templateUrl: 'User/user.html',

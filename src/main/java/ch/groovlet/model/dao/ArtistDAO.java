@@ -29,12 +29,8 @@ public interface ArtistDAO {
     List<Artist> readAllArtists();
 
     @SqlUpdate("UPDATE artist SET name=:name WHERE id=:id")
-<<<<<<< HEAD
     void updateArtist(@Bind("id") final long id,@Bind("name") final String name);
-=======
-    void updateArtist(@Bind("id") final long id, @Bind("name") final String name);
 
     @SqlUpdate("DELETE FROM artist")
     void deleteAll();
->>>>>>> origin/master
 }

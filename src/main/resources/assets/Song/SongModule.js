@@ -1,44 +1,28 @@
 var songModule = angular.module('songModule',['ngResource','youtube']);
 
-songModule.factory('songService', function() {
-
-    return {
-        getSongs: function() {
-            var songs = [{title:'Song1', artist: 'artist1', genre:'genre1',votes:8, youtube:'bESQmBFyNMg'},
-                       {title:'Song2', artist: 'artist2', genre:'genre2',votes:12, youtube:'PGeX6oE-dMM'},
-                       {title:'Song3', artist: 'artist3', genre:'genre3',votes:21, youtube:'f4W7uZBaIaE'},
-                       {title:'Song4', artist: 'artist4', genre:'genre4',votes:50, youtube:'nRvA08ALkGU'},
-                       {title:'Song5', artist: 'artist5', genre:'genre5',votes:23, youtube:'frJKUPjqWgg'},
-                       {title:'Song6', artist: 'artist6', genre:'genre6',votes:2, youtube:'f4W7uZBaIaE'},
-                       {title:'Song7d', artist: 'artist7', genre:'genre7',votes:15, youtube:'frJKUPjqWgg'}];
-            return songs;
-        }
-    };
-});
-
 songModule.service('songService', function($resource) {
 
     var resource = function() {
-        return $resource('/api/song/:id');
+        return $resource('/api/song');
     };
 
     this.getAllSongs = function() {
-        return resource.query();
+        return resource().query();
     };
 
     this.getSongById = function(songId) {
-        return resource.get({ id: songId });
+        return resource().get({ id: songId });
     };
 
     this.createSong = function(song) {
-        resource.save(song);
+        resource().save(song);
     };
 
 });
 
 songModule.controller('songController', function($scope, songService) {
 
-    $scope.songs = songService.getSongs();
+    $scope.songs = songService.getAllSongs();
 
     $scope.setYoutubeSong = function(newYoutubeSong) {
         $scope.youtubeSong = newYoutubeSong;

@@ -1,7 +1,7 @@
 package ch.groovlet.model.service;
 
 import ch.groovlet.model.App;
-import ch.groovlet.model.representations.Artist;
+import ch.groovlet.model.representation.Artist;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.skife.jdbi.v2.DBI;
 
@@ -74,7 +74,7 @@ public class BackupService implements Service {
         artistService.deleteAll();
         for(Artist artist : artists) {
             App.getLogger().debug(artist.getId() + " " + artist.getName());
-            artistService.create(artist.getId(), artist.getName());
+            artistService.create(artist.getName());
         }
         /*writeToDatabase(artists);
         try {
@@ -105,7 +105,7 @@ public class BackupService implements Service {
 
 
         for (Artist artist : artistsToWriteInto) {
-            artistService.create(0, artist.getName());
+            artistService.create(artist.getName());
         }
     }
 

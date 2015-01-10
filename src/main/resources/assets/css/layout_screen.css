@@ -3,10 +3,8 @@ html, body {
      width: 100%;
      margin: 0px;
      padding: 0px;
-}
-
-body {
-  background-color: #eee;
+     background-color: #434242;
+     color: #fff;
 }
 
 /* User Icon in Navbar */
@@ -14,8 +12,8 @@ span.glyphicon-user{
    font-size: 1.2em;
 }
 
-.song-item {
-
+.song-info {
+    color: #fff;
 }
 
 .song-image {
@@ -89,4 +87,25 @@ span.glyphicon-user{
 
     .modal-content {
         border-radius: 0px;
+    }
+
+    .white {
+      color: #fff;
+    }
+
+    .black {
+        background-color: #111111;
+        color: white;
+        border-color: solid #111111 1px;
+    }
+
+    .grey {
+        background-color: #434242
+        color: white;
+    }
+
+    .btn-grey {
+        background-color: #434242;
+        color: white;
+        border-color: #434242;
     }

@@ -5,6 +5,8 @@
          width: 100%;
          margin: 0px;
          padding: 0px;
+         background-color: #111111;
+         color: #fff;
     }
 
     .only-mobile {
@@ -39,5 +41,15 @@
 
     .only-mobile {
         display: inline;
+    }
+
+    .white {
+      color: #fff;
+    }
+
+    .btn-grey {
+        background-color: #434242
+        color: white;
+        border-color: #434242;
     }
 }
