@@ -8,7 +8,6 @@ import io.dropwizard.db.DataSourceFactory;
 
 public class GroovletConfiguration extends Configuration {
 
-    private static final String CACHE_POLICY = "authenticationCachePolicy: maximumSize=10000, expireAfterAccess=10m";
 
     @JsonProperty
     private String message;
@@ -34,12 +33,4 @@ public class GroovletConfiguration extends Configuration {
         return messageRepetitions;
     }
 
-<<<<<<< Updated upstream
-    public CacheBuilderSpec getAuthenticationCachePolicy() {
-        return CacheBuilderSpec.parse(CACHE_POLICY);
-=======
-    public String getAuthenticationCachePolicy() {
-        return authenticationCachePolicy;
->>>>>>> Stashed changes
-    }
 }

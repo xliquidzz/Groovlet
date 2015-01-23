@@ -1,9 +1,7 @@
 package ch.groovlet.model.resource;
 
 import ch.groovlet.model.App;
-import ch.groovlet.model.representation.Artist;
 import ch.groovlet.model.representation.Song;
-import ch.groovlet.model.response.ApiResponse;
 import ch.groovlet.model.service.BackupService;
 
 import javax.ws.rs.*;

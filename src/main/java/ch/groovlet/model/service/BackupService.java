@@ -1,20 +1,14 @@
 package ch.groovlet.model.service;
 
 import ch.groovlet.model.App;
-import ch.groovlet.model.representation.Artist;
 import ch.groovlet.model.representation.Song;
-import ch.groovlet.model.response.ApiResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.skife.jdbi.v2.DBI;
-
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sandro on 06.01.2015.
  */
 public class BackupService implements Service {
+
     private final ArtistService artistService;
     private final SongService songService;
     /*
