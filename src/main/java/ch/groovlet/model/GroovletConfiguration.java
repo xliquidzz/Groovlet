@@ -19,6 +19,9 @@ public class GroovletConfiguration extends Configuration {
     @JsonProperty
     private DataSourceFactory database = new DataSourceFactory();
 
+    @JsonProperty
+    private String authenticationCachePolicy;
+
     public DataSourceFactory getDataSourceFactory() {
         return database;
     }
@@ -31,7 +34,12 @@ public class GroovletConfiguration extends Configuration {
         return messageRepetitions;
     }
 
+<<<<<<< Updated upstream
     public CacheBuilderSpec getAuthenticationCachePolicy() {
         return CacheBuilderSpec.parse(CACHE_POLICY);
+=======
+    public String getAuthenticationCachePolicy() {
+        return authenticationCachePolicy;
+>>>>>>> Stashed changes
     }
 }

@@ -1,11 +1,9 @@
 CREATE TABLE user (
  id bigint(20) NOT NULL AUTO_INCREMENT,
- nickname varchar(100) NOT NULL,
+ username varchar(100) NOT NULL UNIQUE,
  password varchar(40) NOT NULL,
- email varchar(100) NOT NULL,
- PRIMARY KEY (id),
- UNIQUE KEY nickname (nickname),
- UNIQUE KEY email (email)
+ email varchar(100) NOT NULL UNIQUE,
+ PRIMARY KEY (id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE artist (
@@ -14,36 +12,43 @@ CREATE TABLE artist (
  PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+CREATE TABLE genre (
+ id bigint(20) NOT NULL AUTO_INCREMENT,
+ name varchar(100) NOT NULL UNIQUE,
+ PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 CREATE TABLE songlist (
  id bigint(20) NOT NULL AUTO_INCREMENT,
- fk_adminId bigint(20) NOT NULL,
  name varchar(100) NOT NULL,
- PRIMARY KEY (id),
- KEY fk_adminId (fk_adminId),
- CONSTRAINT fk_adminId FOREIGN KEY (fk_adminId) REFERENCES user (id)
+ PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE song(
  id bigint(20) NOT NULL AUTO_INCREMENT,
- fk_artistId bigint(20) NOT NULL,
+ artistId bigint(20) NOT NULL,
  title varchar(100) NOT NULL,
  genre varchar(100) NOT NULL,
- youtubeString varchar(200) NOT NULL,
  votes bigint(20),
+ youtubeString varchar(200) NOT NULL,
  PRIMARY KEY (id),
- KEY fk_artistId (fk_artistId),
- CONSTRAINT fk_artistId FOREIGN KEY (fk_artistId) REFERENCES artist (id)
+ CONSTRAINT fk_artistId FOREIGN KEY (artistId) REFERENCES artist (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-CREATE TABLE userToSonglist (
+CREATE TABLE favorites (
  id bigint(20) NOT NULL AUTO_INCREMENT,
- fk_userId bigint(20) NOT NULL,
- fk_songlistId bigint(20) NOT NULL,
+ userId bigint(20) NOT NULL,
  PRIMARY KEY (id),
- KEY fk_userId (fk_userId),
- KEY fk_songlistId (fk_songlistId),
- CONSTRAINT fk_userId FOREIGN KEY (fk_userId) REFERENCES user (id),
- CONSTRAINT fk_songlistId FOREIGN KEY (fk_songlistId) REFERENCES songlist (id)
+ CONSTRAINT fk_userId FOREIGN KEY (userId) REFERENCES user (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE userToSonglist (
+ userId bigint(20) NOT NULL,
+ songListId bigint(20) NOT NULL,
+ CONSTRAINT fk_userId FOREIGN KEY (userId) REFERENCES user (id),
+ CONSTRAINT fk_songListId FOREIGN KEY (songListId) REFERENCES songList (id),
+ PRIMARY KEY (fk_userId, fk_songListId)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE songToSonglist(
@@ -69,20 +74,20 @@ CREATE TABLE userToSong(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO user(id,nickname,password, email) VALUES(null,"xliquidzz","12345", "test@test.ch");
-INSERT INTO user(id,nickname,password, email) VALUES(null,"test_user","12345", "test@test2.ch");
-INSERT INTO user(id,nickname,password, email) VALUES(null,"tu","12345", "test2@test2.ch");
+INSERT INTO user(id,username, password, email) VALUES(null,"xliquidzz","12345", "s.klaentschi@gmail.com");
+INSERT INTO user(id,username, password, email) VALUES(null,"testUser","12345", "test@test.ch");
+
 
 INSERT INTO artist(id,name) VALUES(null,"test artist");
 INSERT INTO artist(id,name) VALUES(null,"artist");
 INSERT INTO artist(id,name) VALUES(null,"test artist 2");
 INSERT INTO artist(id,name) VALUES(null,"test artist 3");
 
-INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 1, "test song", "test genre", 'bESQmBFyNMg',0);
-INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 3, "test song", "test genri", 'PGeX6oE-dMM',0);
-INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 2, "test song", "test genre2", 'f4W7uZBaIaE',0);
-INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 1, "test song", "genre", 'nRvA08ALkGU',0);
-INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 3, "test song", "test ge", 'frJKUPjqWgg',0);
+INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 16, "test song", "test genre", 'bESQmBFyNMg',0);
+INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 17, "test song", "test genri", 'PGeX6oE-dMM',0);
+INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 18, "test song", "test genre2", 'f4W7uZBaIaE',0);
+INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 19, "test song", "genre", 'nRvA08ALkGU',0);
+INSERT INTO song(id, fk_artistId, title, genre, youtubeString, votes) VALUES(null, 20, "test song", "test ge", 'frJKUPjqWgg',0);
 
 INSERT INTO songlist(id, fk_adminId, name) VALUES(null,1,"xliquidzz SongList");
 INSERT INTO songlist(id, fk_adminId, name) VALUES(null,3,"test_user SongList");

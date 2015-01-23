@@ -28,10 +28,10 @@ public class SongService implements Service {
         long newId = songDAO.createSong(song.getId(), song.getArtistId(), song.getTitle(), song.getGenre(),song.getVotes(), song.getYoutubeString());
         return newId;
     }
-                     /*
+
     public void updateById(final long id, final Song song) {
-        songDAO.updateSong(id, song);
-    }                  */
+    }
+
 
     public void deleteById(final long id) {
         songDAO.deleteSongById(id);
@@ -40,4 +40,5 @@ public class SongService implements Service {
     public void deleteAll() {
         songDAO.deleteAll();
     }
+
 }

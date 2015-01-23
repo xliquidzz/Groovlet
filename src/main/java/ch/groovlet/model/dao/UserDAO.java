@@ -19,7 +19,7 @@ public interface UserDAO {
     User readUserById(@Bind("id") final long id);
 
     @SqlQuery("SELECT * FROM user WHERE nickname = :nickname")
-    User readUserByNickName(@Bind("nickname") final String nickname);
+    User readByUsername(@Bind("nickname") final String nickname);
 
     @SqlUpdate("DELETE FROM user WHERE id = :id")
     void deleteUserById(@Bind("id") final long id);

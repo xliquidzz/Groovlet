@@ -11,13 +11,19 @@ import ch.groovlet.model.service.ArtistService;
 import ch.groovlet.model.service.Service;
 import ch.groovlet.model.resource.*;
 import ch.groovlet.model.service.SongService;
+<<<<<<< Updated upstream
 import com.codahale.metrics.MetricRegistry;
+=======
+>>>>>>> Stashed changes
 import com.google.common.cache.CacheBuilderSpec;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.auth.CachingAuthenticator;
 import io.dropwizard.auth.basic.BasicAuthProvider;
+<<<<<<< Updated upstream
 import io.dropwizard.auth.basic.BasicCredentials;
+=======
+>>>>>>> Stashed changes
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -25,17 +31,25 @@ import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+<<<<<<< Updated upstream
 import javax.jws.soap.SOAPBinding;
 import java.net.URISyntaxException;
+=======
+import javax.servlet.http.Cookie;
+>>>>>>> Stashed changes
 import java.util.HashMap;
 import java.util.Map;
 
 public class App extends Application<GroovletConfiguration> {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
+<<<<<<< Updated upstream
     private CachingAuthenticator<BasicCredentials, User> cachedAuthenticator;
 
     private static final Map<Integer, Service> services = new HashMap<>();
+=======
+    private static final Map<Integer, Service> services = new HashMap<Integer, Service>();
+>>>>>>> Stashed changes
 
     public static void main(String[] args) throws Exception {
         LOGGER.info("Starting application with arguments: %s", new Object[]{args});
@@ -60,8 +74,8 @@ public class App extends Application<GroovletConfiguration> {
 
 
         services.put(ArtistService.class.hashCode(), new ArtistService(jdbi));
-        services.put(BackupService.class.hashCode(), new BackupService(jdbi));
         services.put(SongService.class.hashCode(), new SongService(jdbi));
+        services.put(BackupService.class.hashCode(), new BackupService());
         /*
         services.put(SongListService.class.hashCode(), new SongListService(jdbi));
         services.put(UserService.class.hashCode(), new UserService(jdbi));
@@ -72,7 +86,11 @@ public class App extends Application<GroovletConfiguration> {
         environment.jersey().register(new SongListResource(jdbi));
         environment.jersey().register(new BackupResource());
 
-        //environment.jersey().register(new BasicAuthProvider<User>(new GroovletAuthenticator(jdbi), "Web Service Realm"));
+        GroovletAuthenticator authenticator = new GroovletAuthenticator(jdbi);
+        BasicAuthProvider authProvider = new BasicAuthProvider<User>(authenticator, "SUPER_SECRET_STUFF");
+
+        environment.jersey().register(authProvider);
+        //CachingAuthenticator.wrap(new GroovletAuthenticator(jdbi), configuration.getAuthenticationCachePolicy());
 
         GroovletAuthenticator authenticator = new GroovletAuthenticator(jdbi);
         cachedAuthenticator = new CachingAuthenticator<BasicCredentials, User>(new MetricRegistry(), authenticator, configuration.getAuthenticationCachePolicy());

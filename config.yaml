@@ -2,4 +2,11 @@ database:
   driverClass: com.mysql.jdbc.Driver
   user: user
   password: 12345
+<<<<<<< Updated upstream
   url: jdbc:mysql://localhost:3306/groovlet
+=======
+  url: jdbc:mysql://localhost:3306/groovlet
+
+
+authenticationCachePolicy: maximumSize=10000, expireAfterAccess=10m
+>>>>>>> Stashed changes

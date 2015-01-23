@@ -23,7 +23,7 @@ public class GroovletAuthenticator implements Authenticator<BasicCredentials, Us
     public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
         boolean validUser = (userDao.getUser(credentials.getUsername(), credentials.getPassword()) == 1);
         if (validUser) {
-            return Optional.of(userDao.readUserByNickName(credentials.getUsername()));
+            return Optional.of(userDao.readByUsername(credentials.getUsername()));
         }
         return Optional.absent();
     }

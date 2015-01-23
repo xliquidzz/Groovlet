@@ -2,6 +2,8 @@ package ch.groovlet.model.resource;
 
 import ch.groovlet.model.App;
 import ch.groovlet.model.representation.Artist;
+import ch.groovlet.model.representation.Song;
+import ch.groovlet.model.response.ApiResponse;
 import ch.groovlet.model.service.BackupService;
 
 import javax.ws.rs.*;
@@ -26,13 +28,15 @@ public class BackupResource {
     @GET
     @Path("/store")
     public Response store() {
-        return Response.ok().build();
+        List<Song> songs = backupService.downloadBackup();
+        return Response.ok(songs).build();
     }
 
     @POST
     @Path("/restore")
-    public Response restore(final List<Artist> artists) {
-        backupService.restore(artists);
+    public Response restore(final List<Song> songs) {
+        App.getLogger().warn("restore");
+        backupService.restore(songs);
         return Response.ok().build();
     }
 }

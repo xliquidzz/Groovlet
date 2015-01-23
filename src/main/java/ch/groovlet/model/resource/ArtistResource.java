@@ -34,6 +34,16 @@ public class ArtistResource {
         return Response.created(new URI(String.valueOf(newArtistId))).build();
     }
 
+    @GET
+    @Path("/{id}")
+    public Response read(@PathParam("id") final long id) {
+        final Artist artist = artistService.readById(id);
+        if (artist == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(artist).build();
+    }
+
     @PUT
     @Path("/{id}")
     public Response update(@PathParam("id") final long id, final Artist artist) {
@@ -42,17 +52,6 @@ public class ArtistResource {
         }
         artistService.updateById(id, artist.getName());
         return Response.ok(new Artist(id, artist.getName())).build();
-    }
-
-
-    @GET
-    @Path("/{id}")
-    public Response read(@PathParam("id") final long id) {
-        final Artist artist =(Artist) artistService.readById(id);
-        if (artist == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        return Response.ok(artist).build();
     }
 
     @DELETE
@@ -65,5 +64,3 @@ public class ArtistResource {
         return Response.noContent().build();
     }
 }
-
-
