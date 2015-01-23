@@ -109,3 +109,8 @@ span.glyphicon-user{
         color: white;
         border-color: #434242;
     }
+
+    .thumbnail {
+        border: solid black 1px
+        background-color: black;
+    }

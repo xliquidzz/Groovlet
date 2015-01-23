@@ -1,10 +1,14 @@
 package ch.groovlet.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.cache.CacheBuilderSpec;
 import io.dropwizard.Configuration;
+import io.dropwizard.auth.CachingAuthenticator;
 import io.dropwizard.db.DataSourceFactory;
 
 public class GroovletConfiguration extends Configuration {
+
+    private static final String CACHE_POLICY = "authenticationCachePolicy: maximumSize=10000, expireAfterAccess=10m";
 
     @JsonProperty
     private String message;
@@ -25,5 +29,9 @@ public class GroovletConfiguration extends Configuration {
 
     public int getMessageRepetitions() {
         return messageRepetitions;
+    }
+
+    public CacheBuilderSpec getAuthenticationCachePolicy() {
+        return CacheBuilderSpec.parse(CACHE_POLICY);
     }
 }

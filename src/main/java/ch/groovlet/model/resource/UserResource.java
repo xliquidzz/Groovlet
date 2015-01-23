@@ -1,7 +1,11 @@
 package ch.groovlet.model.resource;
 
+import ch.groovlet.model.App;
 import ch.groovlet.model.dao.UserDAO;
 import ch.groovlet.model.representation.User;
+import io.dropwizard.auth.Auth;
+import io.dropwizard.auth.AuthenticationException;
+import org.eclipse.jetty.security.UserAuthentication;
 import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;
@@ -9,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Optional;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)

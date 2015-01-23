@@ -1,5 +1,6 @@
 package ch.groovlet.model;
 
+import ch.groovlet.model.representation.User;
 import ch.groovlet.model.service.BackupService;
 
 import ch.groovlet.model.resource.ArtistResource;
@@ -10,8 +11,13 @@ import ch.groovlet.model.service.ArtistService;
 import ch.groovlet.model.service.Service;
 import ch.groovlet.model.resource.*;
 import ch.groovlet.model.service.SongService;
+import com.codahale.metrics.MetricRegistry;
+import com.google.common.cache.CacheBuilderSpec;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.auth.CachingAuthenticator;
+import io.dropwizard.auth.basic.BasicAuthProvider;
+import io.dropwizard.auth.basic.BasicCredentials;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -19,11 +25,15 @@ import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jws.soap.SOAPBinding;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class App extends Application<GroovletConfiguration> {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
+    private CachingAuthenticator<BasicCredentials, User> cachedAuthenticator;
 
     private static final Map<Integer, Service> services = new HashMap<>();
 
@@ -64,10 +74,15 @@ public class App extends Application<GroovletConfiguration> {
 
         //environment.jersey().register(new BasicAuthProvider<User>(new GroovletAuthenticator(jdbi), "Web Service Realm"));
 
+        GroovletAuthenticator authenticator = new GroovletAuthenticator(jdbi);
+        cachedAuthenticator = new CachingAuthenticator<BasicCredentials, User>(new MetricRegistry(), authenticator, configuration.getAuthenticationCachePolicy());
+        environment.jersey().register(new BasicAuthProvider<User>(cachedAuthenticator, "REALM MESSAGE"));
+
         environment.jersey().setUrlPattern("/api/*");
     }
 
     public static Logger getLogger() {
         return LOGGER;
     }
+
 }
