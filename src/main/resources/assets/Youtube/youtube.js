@@ -4,7 +4,7 @@ app.controller('youtubeController', function($scope) {
   $scope.code = '9jCgPN7FJ4s';
 });
 
-app.directive('youtube', function($sce) {
+app.directive('youtube', ['$sce', function($sce) {
   return {
     restrict: 'EA',
     scope: { code:'=' },
@@ -18,4 +18,4 @@ app.directive('youtube', function($sce) {
         });
     }
   };
-});
+}]);

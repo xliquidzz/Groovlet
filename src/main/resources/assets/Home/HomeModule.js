@@ -4,6 +4,6 @@ homeModule.service('homeService', function() {
 
 });
 
-homeModule.controller('homeController', function() {
+homeModule.controller('homeController',['$scope', function($scope) {
 
-});
+}]);

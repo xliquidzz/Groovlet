@@ -14,9 +14,9 @@ backupModule.service('backupService', function($resource) {
     };
 });
 
-backupModule.controller('backupController', function ($scope, backupService){
+backupModule.controller('backupController', ['$scope', 'backupService', function ($scope, backupService){
 
     $scope.postBackup = function() {
         backupService.postBackup($scope.inputData);
     };
-});
+}]);

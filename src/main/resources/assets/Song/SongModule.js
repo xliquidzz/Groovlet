@@ -1,6 +1,6 @@
 var songModule = angular.module('songModule',['ngResource','youtube']);
 
-songModule.service('songService', function($resource) {
+songModule.service('songService', ['$resource', function($resource) {
 
     var resource = function() {
         return $resource('/api/song');
@@ -18,9 +18,9 @@ songModule.service('songService', function($resource) {
         resource().save(song);
     };
 
-});
+}]);
 
-songModule.controller('songController', function($scope, songService) {
+songModule.controller('songController', ['$scope', 'songService', function($scope, songService) {
 
     $scope.songs = songService.getAllSongs();
 
@@ -35,4 +35,4 @@ songModule.controller('songController', function($scope, songService) {
     $scope.addVote = function (songVotedFor) {
         songVotedFor.votes = songVotedFor.votes + 1;
     };
-});
+}]);

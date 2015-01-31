@@ -4,6 +4,6 @@ songListModule.service('songListService', function() {
 
 });
 
-songListModule.controller('songListController', function() {
+songListModule.controller('songListController', ['$scope', function($scope) {
 
-});
+}]);

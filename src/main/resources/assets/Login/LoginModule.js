@@ -1,6 +1,6 @@
 var loginModule = angular.module('loginModule', []);
 
-loginModule.service('UserService', ['$cookieStore','$http',function($cookieStore,$http) {
+loginModule.service('UserService', ['$cookieStore','$http', function($cookieStore,$http) {
     this.user = {};
 
     this.storeToSession = function() {
